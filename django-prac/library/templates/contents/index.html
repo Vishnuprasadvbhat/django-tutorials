@@ -1,0 +1,59 @@
+{% extends 'contents/base.html' %}
+
+{% block content %}
+<br>
+<br>
+
+<form id="api-form">
+  <label for="endpoint">API Endpoint:</label>
+  <input type="text" id="endpoint" placeholder="/api/books/">
+  
+  <label for="method">HTTP Method:</label>
+  <select id="method">
+      <option value="GET">GET</option>
+      <option value="POST">POST</option>
+      <option value="PUT">PUT</option>
+      <option value="DELETE">DELETE</option>
+  </select>
+
+  <label for="token">Authorization Token:</label>
+  <input type="text" id="token" placeholder="Token abc123">
+  
+  <label for="payload">JSON Payload (for POST/PUT):</label>
+  <textarea id="payload" placeholder='{"title": "Sample Book"}'></textarea>
+  
+  <button type="button" onclick="fetchData()">Send Request</button>
+
+</form>
+<pre id="response"></pre>
+
+<script>
+async function fetchData() {
+  const endpoint = document.getElementById('endpoint').value;
+  const method = document.getElementById('method').value;
+  const token = document.getElementById('token').value;
+  const payload = document.getElementById('payload').value;
+  const responseElement = document.getElementById('response');
+  
+  const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token ? `Token ${token}` : '',
+  };
+
+  const options = {
+      method: method,
+      headers: headers,
+  };
+
+  if (method === 'POST' || method === 'PUT') {
+      options.body = payload;
+  }
+
+  const response = await fetch(endpoint, options);
+  const data = await response.json();
+  responseElement.textContent = JSON.stringify(data, null, 2);
+}
+</script>
+
+
+{% endblock %}

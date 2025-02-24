@@ -1,0 +1,12 @@
+django
+djangorestframework
+asgiref
+django-cors-headers # TO FIX CROSS ORIGIN REQUEST ISSUE
+djangorestframework-simplejwt # HANDLING JWT TOKENS
+PyJWT
+pytz
+sqlparse
+psycopg2-binary # POSTGRES
+python-dotenv  # LOADING ENVIRONMENT VARIABLES
+
+

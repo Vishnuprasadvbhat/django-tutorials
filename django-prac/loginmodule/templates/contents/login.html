@@ -1,0 +1,23 @@
+{% extends 'content/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="form-container">
+            <form class="form" id="loginForm">
+                <h2>Login</h2>
+                <div class="input-group">
+                    <input type="username" placeholder="username" name="username"  required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password"  name="password" required>
+                </div>
+                <button type="submit">Login</button>
+                <p>Don't have an account? <a href="{% url 'register' %}" id="Register">Register here</a></p>
+            </form>
+            
+        </div>
+    </div>
+    <!-- <script src="script.js"></script> -->
+
+{% endblock %}
